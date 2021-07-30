@@ -1,8 +1,6 @@
 def cadastro_alunos
     alunos = []
-    adiciona = {}
     nome = 1
-    n = 0
     puts 'Digite 1 para inserir o nome do aluno ou 0 para encerrar: '
     opcao = gets.to_i
     if opcao == 1
@@ -10,20 +8,21 @@ def cadastro_alunos
         puts 'Digite o nome do aluno: '
         nome = gets.chomp
         if nome != '0'
-          adiciona[:aluno] = nome
+          aluno = nome
           puts 'Digite a nota do aluno: '
-          adiciona[:nota] = gets.to_f
+          nota = gets.to_f
           puts 'Digite a disciplina: '
-          adiciona[:disciplina] = gets.chomp
-          alunos << adiciona
-          n += 1
+          disciplina = gets.chomp
+          alunos << {aluno: nome, nota: nota, disciplina: disciplina}
         else
           nome = nome.to_i
           opcao = nome
         end
       end
-      
-      puts "\nLista de alunos\n  #{alunos[0][:aluno]} tirou nota #{alunos[0][:nota]} na disciplina de #{alunos[0][:disciplina]}\n  #{alunos[0]}\n  #{alunos[1]}  #{alunos[2]}"
+      puts "\nLista de alunos\n"
+      alunos.each do |cada|
+        puts "#{cada[:aluno]} tirou nota #{cada[:nota]} na disciplina de #{cada[:disciplina]}\n "
+      end
     end
     puts 'Programa encerrado.'
   end
